@@ -8,6 +8,7 @@ from flask import Flask, json, request, session, make_response
 from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
 from collections import Counter
+from googletrans import Translator
 
 # OCR
 def ocr_core(file):
@@ -51,11 +52,14 @@ def fileUpload():
     numberLines = text.count("\n")
     mostRepeatedWords = countMostRepeatedWords(text)
 
+    translator = Translator()
+    traslation = translator.translate(text, src='en', dest='es')
 
     message = {
         "text" : text,
         "numberLines": numberLines,
-        "mostRepeatedWords": mostRepeatedWords
+        "mostRepeatedWords": mostRepeatedWords,
+        "translationText": traslation.text
     }
 
     resp = make_response(message)
