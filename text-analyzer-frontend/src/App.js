@@ -20,11 +20,11 @@ function App() {
 
   // Render Component
   return (
-    <div className='App'>
+    <div className='App' style={{backgroundColor:"#323232"}}>
       <Header />
       <Form handleData={handleData}/>
       {toggleCardResult &&
-        <div className='alert alert-primary' role='alert'>
+        <div className='alert alert-warning' role='alert'>
           RESULTS
         </div>
       }
@@ -32,7 +32,7 @@ function App() {
       {toggleCardResult && <Card title={"Number of Lines:"} text={lines}/>}
       {toggleCardResult && <Card title={"Most repeated words:"} text={mostRepeatedWords}/>}
       {toggleCardResult &&
-        <div className='alert alert-danger' role='alert'>
+        <div className='alert alert-warning' role='alert'>
           TRANSLATION
         </div>
       }
