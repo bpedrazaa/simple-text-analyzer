@@ -7,11 +7,21 @@ import os
 from flask import Flask, json, request, session, make_response
 from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
+from collections import Counter
 
+# OCR
 def ocr_core(file):
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract'
     text = pytesseract.image_to_string(Image.open(file))
     return text
+
+# Count most repeated words
+def countMostRepeatedWords(text):
+    split_it = text.split()
+    foundWords = Counter(split_it)
+    mostRepeatedWords = foundWords.most_common(3)
+
+    return mostRepeatedWords
 
 # Set variables to save image
 UPLOAD_FOLDER = os.getcwd() + '\\images'
@@ -38,9 +48,14 @@ def fileUpload():
 
     # Process the image
     text = ocr_core("images/" + filename)
+    numberLines = text.count("\n")
+    mostRepeatedWords = countMostRepeatedWords(text)
+
 
     message = {
-        "text" : text
+        "text" : text,
+        "numberLines": numberLines,
+        "mostRepeatedWords": mostRepeatedWords
     }
 
     resp = make_response(message)
