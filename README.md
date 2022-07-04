@@ -7,9 +7,9 @@ The project aims to be an simple text analyzer using Flask as a backend and Reac
 
 ### Prerequisites
 
-In order to run the project you need the following requierements:
-* Install the following pip packages => [pillow, tesseract, pytesseract, flask, flask-cors, googletrans=4.0.0rc1]
-* Node installed in your system
+In order to run the project you need the following requirements:
+* Install the following pip packages => [pillow, tesseract, pytesseract, flask, flask-cors, 'googletrans=4.0.0rc1']
+* Node.js
 
 ### Initialization
 
